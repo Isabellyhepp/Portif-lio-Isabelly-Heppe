@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Portfólio | Marketing Digital</title>
+<title>Isabelly Heppe | Portfólio Marketing Digital</title>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=Figtree:ital,wght@0,300;0,400;0,600;1,300&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -214,7 +214,7 @@
 <body>
 
 <nav>
-  <a class="nav-logo" href="#">Seu<span>Nome</span></a>
+  <a class="nav-logo" href="#">Isabelly<span>Heppe</span></a>
   <ul class="nav-links">
     <li><a href="#sobre">Sobre</a></li>
     <li><a href="#cases">Cases</a></li>
@@ -379,7 +379,7 @@
         <p>Além dos projetos, produzo <strong>conteúdo sobre marketing digital</strong> nas redes sociais — análises, estratégias e tendências do mercado.</p>
         <p>É onde coloco em prática o que estudo e construo meu olhar sobre o mercado. Ainda crescendo em audiência, mas com <strong>consistência, voz própria e posicionamento claro</strong>.</p>
         <br>
-        <a href="https://instagram.com/seuperfil" class="btn btn-red" style="display:inline-block">Ver perfil →</a>
+        <a href="https://www.linkedin.com/in/isabelly-heppe-269044334" target="_blank" class="btn btn-red" style="display:inline-block">Ver LinkedIn →</a>
       </div>
       <div class="post-grid reveal">
         <div class="post-card highlight">
@@ -411,4 +411,48 @@
   <div class="contact-wrap reveal">
     <div>
       <div class="label">Vamos conversar?</div>
-      <h2 c
+      <h2 class="stitle">Vamos criar algo<br>impactante juntos?</h2>
+      <p>Estou em busca de oportunidades para aplicar minha visão estratégica em projetos reais. Se você precisa de marketing com foco em resultados, entre em contato!</p>
+    </div>
+    <div class="clinks">
+        <a href="https://wa.me/5541996755509" target="_blank" class="clink">
+            <span>WhatsApp</span>
+            <span class="arr">↗</span>
+        </a>
+        <a href="https://www.linkedin.com/in/isabelly-heppe-269044334" target="_blank" class="clink">
+            <span>LinkedIn</span>
+            <span class="arr">↗</span>
+        </a>
+        <a href="mailto:isahepp68@gmail.com" class="clink">
+            <span>isahepp68@gmail.com</span>
+            <span class="arr">↗</span>
+        </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  &copy; 2026 Isabelly Heppe — Bacharelado em Marketing PUCPR.
+</footer>
+
+<script>
+  // Script para ativar as animações de "revelar" ao rolar a página
+  const observerOptions = {
+    threshold: 0.1
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('vis');
+      }
+    });
+  }, observerOptions);
+
+  document.querySelectorAll('.reveal').forEach(el => {
+    observer.observe(el);
+  });
+</script>
+
+</body>
+</html>
