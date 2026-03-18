@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfólio | Marketing Digital</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=Figtree:ital,wght@0,300;0,400;0,600;1,300&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #f7f4ef;
+    --bg2: #eeeae2;
+    --black: #111;
+    --accent: #e63422;
+    --accent2: #f5a623;
+    --gray: #888;
+    --card: #fff;
+  }
+  html { scroll-behavior: smooth; }
+  body { background: var(--bg); color: var(--black); font-family: 'Figtree', sans-serif; overflow-x: hidden; }
+
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1.4rem 3.5rem;
+    background: rgba(247,244,239,0.88);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+  }
+  .nav-logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1rem; letter-spacing: 0.05em; text-decoration: none; color: var(--black); }
+  .nav-logo span { color: var(--accent); }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a { color: var(--gray); text-decoration: none; font-size: 0.85rem; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--black); }
+
+  .hero {
+    min-height: 100vh; display: flex; align-items: center;
+    padding: 8rem 3.5rem 4rem; position: relative; overflow: hidden;
+  }
+  .hero-inner {
+    display: grid; grid-template-columns: 1.1fr 0.9fr;
+    gap: 4rem; align-items: center; width: 100%; max-width: 1200px; margin: 0 auto;
+  }
+  .hero-pill {
+    display: inline-flex; align-items: center; gap: 0.6rem;
+    background: #fff; border: 1px solid rgba(0,0,0,0.1);
+    padding: 0.45rem 1rem; border-radius: 100px;
+    font-size: 0.78rem; color: var(--gray); margin-bottom: 2rem;
+    animation: up 0.7s ease both;
+  }
+  .hero-pill .dot { width: 7px; height: 7px; background: #22c55e; border-radius: 50%; animation: pulse 2s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+  .hero-title {
+    font-family: 'Syne', sans-serif; font-weight: 800;
+    font-size: clamp(2.8rem, 5.5vw, 5rem); line-height: 1.05; margin-bottom: 1.5rem;
+    animation: up 0.7s 0.1s ease both;
+  }
+  .hero-title .red { color: var(--accent); }
+  .hero-sub {
+    font-size: 1.05rem; color: #666; line-height: 1.7; font-weight: 300;
+    max-width: 430px; margin-bottom: 2.5rem; animation: up 0.7s 0.2s ease both;
+  }
+  .hero-btns { display: flex; gap: 1rem; animation: up 0.7s 0.3s ease both; }
+  .btn {
+    display: inline-block; text-decoration: none;
+    font-family: 'Syne', sans-serif; font-weight: 700;
+    font-size: 0.82rem; letter-spacing: 0.06em; text-transform: uppercase;
+    padding: 0.9rem 2rem; border-radius: 4px; transition: all 0.2s;
+  }
+  .btn-red { background: var(--accent); color: #fff; }
+  .btn-red:hover { background: #c42a1a; transform: translateY(-2px); }
+  .btn-outline { border: 1.5px solid #ccc; color: var(--black); }
+  .btn-outline:hover { border-color: var(--black); }
+
+  .hero-visual { position: relative; animation: up 0.7s 0.15s ease both; }
+  .hero-blob {
+    position: absolute; top: -40px; right: -40px;
+    width: 320px; height: 320px;
+    background: radial-gradient(circle, rgba(230,52,34,0.12) 0%, transparent 70%);
+    border-radius: 50%; z-index: 0; pointer-events: none;
+  }
+  .hero-cards { position: relative; z-index: 1; display: flex; flex-direction: column; gap: 1rem; }
+  .hcard {
+    background: #fff; border-radius: 16px; padding: 1.6rem 2rem;
+    box-shadow: 0 2px 20px rgba(0,0,0,0.07);
+    display: flex; align-items: center; gap: 1.2rem; transition: transform 0.3s;
+  }
+  .hcard:hover { transform: translateY(-3px); }
+  .hcard-icon { font-size: 1.8rem; }
+  .hcard-val { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.6rem; color: var(--black); line-height: 1; }
+  .hcard-val span { color: var(--accent); }
+  .hcard-label { font-size: 0.78rem; color: var(--gray); margin-top: 0.2rem; }
+  .hcard.featured { background: var(--accent); }
+  .hcard.featured .hcard-val, .hcard.featured .hcard-label { color: #fff; }
+
+  .marquee-wrap { overflow: hidden; padding: 1.1rem 0; background: var(--black); }
+  .marquee-track { display: flex; width: max-content; animation: marquee 20s linear infinite; gap: 2.5rem; }
+  .mitem {
+    display: flex; align-items: center; gap: 0.8rem;
+    font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.75rem;
+    letter-spacing: 0.12em; text-transform: uppercase; color: #555; white-space: nowrap;
+  }
+  .mitem .sep { color: var(--accent); }
+  @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+  section { padding: 6rem 3.5rem; }
+  .container { max-width: 1200px; margin: 0 auto; }
+  .label {
+    font-size: 0.7rem; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 0.75rem;
+    display: flex; align-items: center; gap: 0.6rem;
+  }
+  .label::before { content: ''; width: 24px; height: 1.5px; background: var(--accent); }
+  .stitle {
+    font-family: 'Syne', sans-serif; font-weight: 800;
+    font-size: clamp(1.8rem, 3.5vw, 2.6rem); line-height: 1.1; margin-bottom: 3rem;
+  }
+
+  .sobre { background: var(--bg2); }
+  .sobre-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+  .sobre-left p { color: #555; line-height: 1.8; font-size: 0.98rem; font-weight: 300; margin-bottom: 1rem; }
+  .sobre-left p strong { color: var(--black); font-weight: 600; }
+  .tag-row { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 2rem; }
+  .chip { padding: 0.4rem 1rem; border-radius: 100px; border: 1px solid #ddd; background: #fff; font-size: 0.78rem; color: #555; }
+  .skills-list { display: flex; flex-direction: column; gap: 1rem; }
+  .skill-row {
+    background: #fff; border-radius: 12px; padding: 1.4rem 1.6rem;
+    display: flex; align-items: center; gap: 1.2rem;
+    box-shadow: 0 1px 8px rgba(0,0,0,0.05); transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .skill-row:hover { transform: translateX(6px); box-shadow: 0 4px 20px rgba(0,0,0,0.09); }
+  .skill-row .icon { font-size: 1.4rem; }
+  .skill-row .sname { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.95rem; }
+  .skill-row .sdesc { font-size: 0.8rem; color: var(--gray); }
+  .skill-row .arr { margin-left: auto; color: #ccc; font-size: 0.9rem; }
+
+  .cases-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+  .case-card {
+    background: #fff; border-radius: 16px; padding: 2.2rem;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+    transition: transform 0.3s, box-shadow 0.3s; position: relative; overflow: hidden;
+  }
+  .case-card:hover { transform: translateY(-5px); box-shadow: 0 12px 40px rgba(0,0,0,0.1); }
+  .case-card.big {
+    grid-column: span 2; display: grid;
+    grid-template-columns: 1fr 1fr; gap: 2rem; align-items: center;
+  }
+  .cbadge {
+    display: inline-block; font-size: 0.68rem; letter-spacing: 0.15em;
+    text-transform: uppercase; padding: 0.3rem 0.9rem; border-radius: 100px;
+    margin-bottom: 1.2rem; font-weight: 600;
+  }
+  .cbadge.win { background: #fff3cd; color: #b45309; }
+  .cbadge.social { background: #ede9fe; color: #7c3aed; }
+  .cbadge.brand { background: #dcfce7; color: #166534; }
+  .ctitle { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.25rem; line-height: 1.2; margin-bottom: 0.8rem; }
+  .cdesc { font-size: 0.88rem; color: #666; line-height: 1.7; font-weight: 300; }
+  .cstats { display: flex; gap: 2rem; flex-wrap: wrap; }
+  .cstat-num { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 2.5rem; color: var(--accent); }
+  .cstat-label { font-size: 0.72rem; color: var(--gray); margin-top: 0.1rem; }
+  .ctags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 1.2rem; }
+  .ctag { font-size: 0.7rem; padding: 0.25rem 0.7rem; border-radius: 100px; background: var(--bg2); color: #777; }
+
+  .conteudo { background: var(--bg2); }
+  .conteudo-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+  .conteudo-text p { color: #555; line-height: 1.8; font-size: 0.98rem; font-weight: 300; margin-bottom: 1rem; }
+  .conteudo-text p strong { color: var(--black); font-weight: 600; }
+  .post-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; }
+  .post-card { background: #fff; border-radius: 12px; padding: 1.4rem; box-shadow: 0 1px 8px rgba(0,0,0,0.05); }
+  .post-card .picon { font-size: 1.3rem; margin-bottom: 0.6rem; }
+  .post-card .ptitle { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.82rem; margin-bottom: 0.3rem; }
+  .post-card .pdesc { font-size: 0.75rem; color: var(--gray); line-height: 1.5; }
+  .post-card.highlight { background: var(--accent); }
+  .post-card.highlight .ptitle, .post-card.highlight .pdesc { color: #fff; }
+
+  .contact-wrap {
+    background: var(--black); border-radius: 24px; padding: 4rem;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;
+    max-width: 1200px; margin: 0 auto;
+  }
+  .contact-wrap .stitle { color: #fff; margin-bottom: 1rem; }
+  .contact-wrap .label { color: var(--accent2); }
+  .contact-wrap .label::before { background: var(--accent2); }
+  .contact-wrap p { color: #888; font-weight: 300; line-height: 1.7; }
+  .clinks { display: flex; flex-direction: column; gap: 1rem; }
+  .clink {
+    display: flex; align-items: center; gap: 1.2rem;
+    padding: 1.3rem 1.6rem; border-radius: 12px;
+    background: #1a1a1a; text-decoration: none; color: #fff;
+    font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.9rem;
+    transition: background 0.2s, transform 0.2s;
+  }
+  .clink:hover { background: #222; transform: translateX(6px); }
+  .clink .arr { margin-left: auto; color: #444; transition: color 0.2s; }
+  .clink:hover .arr { color: var(--accent); }
+
+  footer { text-align: center; padding: 2.5rem; font-size: 0.75rem; color: #bbb; letter-spacing: 0.08em; border-top: 1px solid rgba(0,0,0,0.08); }
+
+  @keyframes up { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: none; } }
+  .reveal { opacity: 0; transform: translateY(36px); transition: opacity 0.65s ease, transform 0.65s ease; }
+  .reveal.vis { opacity: 1; transform: none; }
+
+  @media (max-width: 860px) {
+    nav { padding: 1.2rem 1.5rem; }
+    .nav-links { display: none; }
+    .hero { padding: 6rem 1.5rem 3rem; }
+    .hero-inner, .sobre-grid, .cases-grid, .conteudo-inner, .contact-wrap { grid-template-columns: 1fr; gap: 2rem; }
+    .case-card.big { grid-column: 1; display: flex; flex-direction: column; }
+    section { padding: 4rem 1.5rem; }
+    .contact-wrap { padding: 2.5rem 1.5rem; border-radius: 16px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="#">Seu<span>Nome</span></a>
+  <ul class="nav-links">
+    <li><a href="#sobre">Sobre</a></li>
+    <li><a href="#cases">Cases</a></li>
+    <li><a href="#conteudo">Conteúdo</a></li>
+    <li><a href="#contato">Contato</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="hero-pill"><span class="dot"></span> Disponível para estágios e projetos</div>
+      <h1 class="hero-title">Marketing que<br>move <span class="red">pessoas</span><br>e negócios.</h1>
+      <p class="hero-sub">Estudante de Marketing na PUCPR. Social Media, Conteúdo, Email e SEO — com estratégia real e criatividade.</p>
+      <div class="hero-btns">
+        <a href="#cases" class="btn btn-red">Ver projetos</a>
+        <a href="#contato" class="btn btn-outline">Entrar em contato</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-blob"></div>
+      <div class="hero-cards">
+        <div class="hcard featured">
+          <div class="hcard-icon">🏆</div>
+          <div class="hcard-text">
+            <div class="hcard-val">1° Lugar</div>
+            <div class="hcard-label">Projeto de marketing 360° — estratégia completa</div>
+          </div>
+        </div>
+        <div class="hcard">
+          <div class="hcard-icon">📱</div>
+          <div class="hcard-text">
+            <div class="hcard-val">Social<span> +</span> SEO</div>
+            <div class="hcard-label">Especialidades em marketing digital</div>
+          </div>
+        </div>
+        <div class="hcard">
+          <div class="hcard-icon">🎓</div>
+          <div class="hcard-text">
+            <div class="hcard-val">PUCPR</div>
+            <div class="hcard-label">Bacharelado em Marketing</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <div class="mitem">Social Media <span class="sep">✦</span></div>
+    <div class="mitem">Email Marketing <span class="sep">✦</span></div>
+    <div class="mitem">SEO & Conteúdo <span class="sep">✦</span></div>
+    <div class="mitem">Branding Visual <span class="sep">✦</span></div>
+    <div class="mitem">Copywriting <span class="sep">✦</span></div>
+    <div class="mitem">CRM & Automação <span class="sep">✦</span></div>
+    <div class="mitem">Criação de Conteúdo <span class="sep">✦</span></div>
+    <div class="mitem">Social Media <span class="sep">✦</span></div>
+    <div class="mitem">Email Marketing <span class="sep">✦</span></div>
+    <div class="mitem">SEO & Conteúdo <span class="sep">✦</span></div>
+    <div class="mitem">Branding Visual <span class="sep">✦</span></div>
+    <div class="mitem">Copywriting <span class="sep">✦</span></div>
+    <div class="mitem">CRM & Automação <span class="sep">✦</span></div>
+    <div class="mitem">Criação de Conteúdo <span class="sep">✦</span></div>
+  </div>
+</div>
+
+<section id="sobre" class="sobre">
+  <div class="container">
+    <div class="label">Quem sou eu</div>
+    <h2 class="stitle">Criatividade com<br>estratégia.</h2>
+    <div class="sobre-grid">
+      <div class="sobre-left reveal">
+        <p>Estudante de Marketing na <strong>PUCPR</strong>, com experiência prática em projetos reais de marketing digital e presencial — desde criação de conteúdo e gestão de redes até branding e comunicação visual.</p>
+        <p>Já <strong>liderei equipes criativas</strong>, planejei campanhas do zero e acompanhei resultados de perto. Sei que marketing não é só estética: é <strong>estratégia, consistência e entender o público</strong>.</p>
+        <div class="tag-row">
+          <span class="chip">Social Media</span>
+          <span class="chip">Email Marketing</span>
+          <span class="chip">SEO</span>
+          <span class="chip">Copywriting</span>
+          <span class="chip">Branding</span>
+          <span class="chip">CRM</span>
+          <span class="chip">Liderança criativa</span>
+        </div>
+      </div>
+      <div class="skills-list reveal">
+        <div class="skill-row">
+          <span class="icon">📱</span>
+          <div><div class="sname">Social Media</div><div class="sdesc">Estratégia, criação e gestão de perfis</div></div>
+          <span class="arr">→</span>
+        </div>
+        <div class="skill-row">
+          <span class="icon">✉️</span>
+          <div><div class="sname">Email Marketing & CRM</div><div class="sdesc">Fluxos, segmentação e automações</div></div>
+          <span class="arr">→</span>
+        </div>
+        <div class="skill-row">
+          <span class="icon">🔍</span>
+          <div><div class="sname">SEO & Conteúdo</div><div class="sdesc">Conteúdo otimizado e tráfego orgânico</div></div>
+          <span class="arr">→</span>
+        </div>
+        <div class="skill-row">
+          <span class="icon">🎨</span>
+          <div><div class="sname">Branding & Visual</div><div class="sdesc">Identidade, banners e comunicação</div></div>
+          <span class="arr">→</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="cases">
+  <div class="container">
+    <div class="label">Projetos</div>
+    <h2 class="stitle">Cases reais.</h2>
+    <div class="cases-grid">
+      <div class="case-card big reveal">
+        <div>
+          <div class="cbadge win">🏆 1° Lugar</div>
+          <h3 class="ctitle">Projeto de Marketing 360° — do digital ao presencial</h3>
+          <p class="cdesc">Liderança da estratégia completa: Instagram, banners, decoração e experiência no ponto de venda. Coordenei a equipe criativa, defini identidade visual e planejei a comunicação para atrair e converter clientes. Resultado: primeiro lugar.</p>
+          <div class="ctags">
+            <span class="ctag">Liderança</span><span class="ctag">Instagram</span>
+            <span class="ctag">Identidade Visual</span><span class="ctag">Branding</span>
+            <span class="ctag">Comunicação offline</span>
+          </div>
+        </div>
+        <div class="cstats">
+          <div><div class="cstat-num">#1°</div><div class="cstat-label">Colocação final</div></div>
+          <div><div class="cstat-num">360°</div><div class="cstat-label">Estratégia integrada</div></div>
+          <div><div class="cstat-num">3x</div><div class="cstat-label">Anos de projeto</div></div>
+        </div>
+      </div>
+
+      <div class="case-card reveal">
+        <div class="cbadge social">Social Media</div>
+        <h3 class="ctitle">Instagram como canal de atração</h3>
+        <p class="cdesc">Criação do perfil e estratégia de conteúdo para atrair clientes com antecipação. Posts, stories e copy direcionados para conversão.</p>
+        <div class="ctags">
+          <span class="ctag">Instagram</span><span class="ctag">Copy</span><span class="ctag">Design de posts</span>
+        </div>
+      </div>
+
+      <div class="case-card reveal">
+        <div class="cbadge brand">Branding</div>
+        <h3 class="ctitle">Identidade visual + experiência no ponto</h3>
+        <p class="cdesc">A decoração foi estratégia de marca: ambiente coeso com o digital, tornando o espaço físico uma extensão da identidade visual criada.</p>
+        <div class="ctags">
+          <span class="ctag">Branding</span><span class="ctag">Design</span><span class="ctag">Experiência do cliente</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="conteudo" class="conteudo">
+  <div class="container">
+    <div class="label">Criação de Conteúdo</div>
+    <h2 class="stitle">Praticando o que<br>aprendo.</h2>
+    <div class="conteudo-inner">
+      <div class="conteudo-text reveal">
+        <p>Além dos projetos, produzo <strong>conteúdo sobre marketing digital</strong> nas redes sociais — análises, estratégias e tendências do mercado.</p>
+        <p>É onde coloco em prática o que estudo e construo meu olhar sobre o mercado. Ainda crescendo em audiência, mas com <strong>consistência, voz própria e posicionamento claro</strong>.</p>
+        <br>
+        <a href="https://instagram.com/seuperfil" class="btn btn-red" style="display:inline-block">Ver perfil →</a>
+      </div>
+      <div class="post-grid reveal">
+        <div class="post-card highlight">
+          <div class="picon">📊</div>
+          <div class="ptitle">Estratégia de conteúdo</div>
+          <div class="pdesc">Análises e tendências do mercado</div>
+        </div>
+        <div class="post-card">
+          <div class="picon">💡</div>
+          <div class="ptitle">Cases & referências</div>
+          <div class="pdesc">O que grandes marcas fazem de certo</div>
+        </div>
+        <div class="post-card">
+          <div class="picon">📱</div>
+          <div class="ptitle">Social media tips</div>
+          <div class="pdesc">Dicas práticas de gestão</div>
+        </div>
+        <div class="post-card">
+          <div class="picon">🔍</div>
+          <div class="ptitle">SEO na prática</div>
+          <div class="pdesc">Conteúdo que aparece no Google</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contato">
+  <div class="contact-wrap reveal">
+    <div>
+      <div class="label">Vamos conversar?</div>
+      <h2 c
